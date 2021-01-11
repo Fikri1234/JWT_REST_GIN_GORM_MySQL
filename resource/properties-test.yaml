@@ -1,0 +1,6 @@
+DB:
+  USER_NAME: "root"
+  PASSWORD: "P@ssw0rd"
+  HOST_NAME: "localhost:3306"
+  NAME: "app_data"
+PORT: "8999"  
