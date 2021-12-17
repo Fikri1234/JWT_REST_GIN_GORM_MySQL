@@ -30,3 +30,6 @@ type MUser struct {
 	UpdatedAt             time.Time
 	DeletedAt             gorm.DeletedAt `gorm:"index"`
 }
+
+// UserData ...
+var UserData MUser

@@ -18,6 +18,7 @@ func RoutesMenu(rg *gin.RouterGroup) {
 
 	menu.GET("/by-id/:id", util.TokenAuthMiddleware(), getMenuByID)
 	menu.GET("/by-menuid/:id", util.TokenAuthMiddleware(), getMenuByMenuID)
+	menu.GET("/by-rolecode/:roleCode", util.TokenAuthMiddleware(), getTreeMenu)
 	menu.POST("/", util.TokenAuthMiddleware(), createMenu)
 	menu.PUT("/", util.TokenAuthMiddleware(), updateMenu)
 	menu.DELETE("/:id", util.TokenAuthMiddleware(), deleteMenuByID)
@@ -68,6 +69,61 @@ func getMenuByMenuID(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, menus)
+}
+
+func getTreeMenu(c *gin.Context) {
+
+	var err error
+
+	paramID := c.Param("roleCode")
+	varID, err := strconv.ParseInt(paramID, 10, 64)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"message": err.Error()})
+		return
+	}
+
+	// find base parent menu role
+	var roleMenuBases []model.MMenuRole
+	roleMenuBases, err = repository.GetMMenuRoleByUserRoleIDAndPid(varID, 0)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"message": err.Error()})
+		return
+	}
+
+	// find child menu role
+	var roleMenuNotBases []model.MMenuRole
+	roleMenuNotBases, err = repository.GetMMenuRoleByUserRoleIDAndPidNOT(varID, 0)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"message": err.Error()})
+		return
+	}
+
+	var menuBases []model.MMenu
+	for idx := range roleMenuBases {
+		var menuChild = iterateMenus(roleMenuNotBases, roleMenuBases[idx].MMenu.ID)
+		menuBases = append(menuBases, roleMenuBases[idx].MMenu)
+		menuBases[idx].MenuChildren = menuChild
+	}
+
+	c.JSON(http.StatusOK, menuBases)
+}
+
+func iterateMenus(menus []model.MMenuRole, pID int64) []model.MMenu {
+	var result []model.MMenu
+
+	for _, menu := range menus {
+		var menuID = menu.MMenu.ID
+		var parentID = menu.MMenu.ParentMenuID
+
+		if parentID == pID {
+			var menuChild = iterateMenus(menus, menuID)
+			menu.MMenu.MenuChildren = menuChild
+			result = append(result, menu.MMenu)
+		}
+	}
+
+	return result
 }
 
 func createMenu(c *gin.Context) {

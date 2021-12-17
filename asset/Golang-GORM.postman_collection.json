@@ -1,0 +1,185 @@
+{
+	"info": {
+		"_postman_id": "50cc83da-9f26-41fb-9ed3-3c36d1df5c06",
+		"name": "Golang-GORM",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "menu",
+			"item": [
+				{
+					"name": "get by roleCode",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3NfdXVpZCI6IjIyUEFNOG1oWHRPeERDUDd1bGc4c2FPZXFkVyIsImF1dGhvcml6ZWQiOnRydWUsImV4cCI6MTYzOTc4Mjc5NywibmFtZSI6ImFkbWluIiwidXNlcl9pZCI6MX0.9LN5jnwuEc_KLH1YmK6ocf5B5zQU-OURxCLJOf5Pf2E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8999/api/menu/by-rolecode/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8999",
+							"path": [
+								"api",
+								"menu",
+								"by-rolecode",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8999/api/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8999",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8999/api/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8999",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3NfdXVpZCI6IjIyUEF3U0hrcXE2V3lIZDRHbk5pOEZPS09vMyIsImF1dGhvcml6ZWQiOnRydWUsImV4cCI6MTYzOTc4MzA4NiwibmFtZSI6ImFkbWluIiwidXNlcl9pZCI6MX0.cUd0dM_8lz3CWLIbnx2ROEmkS89CjD2yQUs8xaF_3JM; Expires=Fri, 17 Dec 2021 23:18:06 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 17 Dec 2021 08:18:06 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "511"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3NfdXVpZCI6IjIyUEF3U0hrcXE2V3lIZDRHbk5pOEZPS09vMyIsImF1dGhvcml6ZWQiOnRydWUsImV4cCI6MTYzOTc4MzA4NiwibmFtZSI6ImFkbWluIiwidXNlcl9pZCI6MX0.cUd0dM_8lz3CWLIbnx2ROEmkS89CjD2yQUs8xaF_3JM\",\n    \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDYyMDkwODYsIm5hbWUiOiJhZG1pbiIsInJlZnJlc2hfdXVpZCI6IjIyUEF3U0hrcXE2V3lIZDRHbk5pOEZPS09vMysrMSIsInVzZXJfaWQiOjF9.lhiOnSYbEwq-FXFzzd98sMF0W3f3qZUNiX5AHEn_4sE\",\n    \"atExpires\": 1639783086,\n    \"rtExpires\": 1646209086\n}"
+				}
+			]
+		},
+		{
+			"name": "logout",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8999/api/logout",
+					"host": [
+						"localhost"
+					],
+					"port": "8999",
+					"path": [
+						"api",
+						"logout"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "logout",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8999/api/logout",
+							"host": [
+								"localhost"
+							],
+							"port": "8999",
+							"path": [
+								"api",
+								"logout"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "token=; Expires=Fri, 10 Dec 2021 08:17:08 GMT; Max-Age=0"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 17 Dec 2021 08:17:08 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "38"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Successfully logged out!\"\n}"
+				}
+			]
+		}
+	]
+}

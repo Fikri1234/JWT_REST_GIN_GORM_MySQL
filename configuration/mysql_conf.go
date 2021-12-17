@@ -3,7 +3,6 @@ package configuration
 import (
 	"JWT_REST_GIN_GORM_MySQL/model"
 	"fmt"
-	"log"
 	"time"
 
 	"github.com/spf13/viper"
@@ -18,19 +17,6 @@ func initConfMySQL() {
 	password = viper.GetString("DB.PASSWORD")
 	hostname = viper.GetString("DB.HOST_NAME")
 	dbname = viper.GetString("DB.NAME")
-}
-
-// Connect db
-func Connect() *gorm.DB {
-	initConfMySQL()
-
-	db, err := gorm.Open(mysql.Open(confMysql(dbname)), &gorm.Config{})
-
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	return db
 }
 
 // DB database global

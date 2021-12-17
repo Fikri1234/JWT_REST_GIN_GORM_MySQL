@@ -3,4 +3,7 @@ DB:
   PASSWORD: "P@ssw0rd"
   HOST_NAME: "localhost:3306"
   NAME: "app_data"
+JWT:
+  ACCESS_SECRET: "pass@L31"  
+  REFRESH_SECRET: "reFF&5i"
 PORT: "8999"  
